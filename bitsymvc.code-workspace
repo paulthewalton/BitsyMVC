@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"html.format.unformatted": null,
+		"html.format.wrapLineLength": 0,
+		"sfmt.noleadzero": false,
+		"sfmt.quoteconvert": "single",
+		"sfmt.braces": "knr",
+		"sfmt.insize": 4,
+		"sfmt.inchar": " ",
+		"sfmt.objsort": "all",
+		"scss.validate": false,
+		"stylelint.enable": true,
+		"files.associations": {
+			"*.lock": "json"
+		},
+		"php.suggest.basic": false,
+	},
+	"extensions": {
+		"recommendations": [
+			"EditorConfig.editorconfig",
+			"dbaeumer.jshint",
+			"bmewburn.vscode-intelephense-client",
+			"kokororin.vscode-phpfmt",
+			"mrmlnc.vscode-scss",
+			"dweber019.vscode-style-formatter",
+			"shinnn.stylelint"
+		]
+	}
+}

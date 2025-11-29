@@ -1,0 +1,61 @@
+## Project Specific Files
+# ...
+package-lock.json
+
+# style.min.css
+# style.unprefixed.css
+# style.prefixed.css
+style.*.css.map
+# scripts.min.js
+
+## Large Assets
+*.psd
+*.ai
+*.sketch
+
+### Video Assets
+*.mp4
+
+### Audio Assets
+*.wav
+
+## Database
+*.sqlite
+*.sqlite3
+*.db
+
+## Sass
+.sass-cache
+
+## Composer
+app/vendor
+
+## Node.js
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+pids
+logs
+results
+npm-debug.log
+node_modules
+
+## OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

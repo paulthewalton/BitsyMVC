@@ -1,0 +1,162 @@
+@import "vendor/font-awesome/fontawesome";
+@import "vendor/font-awesome/fa-regular";
+@import "vendor/font-awesome/fa-light";
+@import "../../node_modules/bulma/bulma";
+// @import '../../node_modules/dragula/dist/dragula';
+@import "vendor/dragula";
+
+@function map-get-next($map, $key, $fallback: false) {
+	@if type_of($map) == map {
+		@if map_has_key($map, $key) {
+			$i: 0;
+			$key-index: false;
+			@each $map-key, $map-value in $map {
+				$i: $i + 1;
+				@if $map-key == $key {
+					$key-index: $i;
+				}
+				@if $i == $key-index + 1 {
+					@return $map-value;
+				}
+				@if $i == length($map) {
+					@return $fallback;
+				}
+			}
+			@warn 'No next map item for key #{$key}';
+			@return $fallback;
+		}
+		@warn 'No valid key #{$key} in map';
+		@return $fallback;
+	}
+	@warn 'No valid map';
+	@return $fallback;
+}
+
+.has-text-monospaced {
+	font-family: Monaco, Menlo, "Source Code Pro", Consolas, "Courier New",
+		Courier, monospace;
+}
+
+#topic-list {
+	margin-bottom: 1.5rem;
+}
+
+.is-being-edited {
+	box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px #00d1b2;
+}
+
+.level-left.is-level-mobile,
+.level-right.is-level-mobile {
+	@media screen and (max-width: 768px) {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-items: center;
+
+		.level-item:not(:last-child) {
+			margin-right: 0.75rem;
+			margin-bottom: 0.25rem;
+		}
+
+		&.is-right-mobile {
+			justify-content: flex-end;
+		}
+
+		&.is-left-mobile {
+			justify-content: flex-start;
+		}
+	}
+}
+
+.tag.is-priority-1 {
+	background-color: #ddd;
+}
+
+.is-sibling {
+	.is-primary & {
+		@extend .is-primary;
+	}
+	.is-link & {
+		@extend .is-link;
+	}
+	.is-info & {
+		@extend .is-info;
+	}
+	.is-success & {
+		@extend .is-success;
+	}
+	.is-warning & {
+		@extend .is-warning;
+	}
+	.is-danger & {
+		@extend .is-danger;
+	}
+}
+
+.color-indicator {
+	position: relative;
+	bottom: 1px;
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+	vertical-align: text-bottom;
+	border-radius: 0.5em;
+	background: #ebebeb;
+	margin-left: 0.25em;
+}
+
+.is-bottom {
+	align-self: flex-end;
+}
+
+.is-pending-removal {
+	transition: all 300ms linear;
+	opacity: 0;
+
+	&.topic {
+		transform: translateX(100%);
+	}
+}
+
+fieldset {
+	border: none;
+}
+
+$breakpoints: (
+	// As set by Bulma
+	"mobile": 0px,
+	"tablet": 769px,
+	"desktop": 1024px,
+	"widescreen": 1216px,
+	"fullhd": 1408px
+);
+
+@each $breakpoint, $size in $breakpoints {
+	@media screen and (min-width: $size) {
+		@for $i from 1 through 16 {
+			.is-ordered-#{$i}-#{$breakpoint} {
+				order: $i;
+			}
+		}
+		.is-ordered-last-#{$breakpoint} {
+			order: 99;
+		}
+		.is-column-#{$breakpoint} {
+			flex-flow: column nowrap;
+		}
+	}
+
+	@media screen and (min-width: $size) and (max-width: map-get-next($breakpoints, $breakpoint, 40000px)) {
+		@for $i from 1 through 16 {
+			.is-ordered-#{$i}-#{$breakpoint}-only {
+				order: $i;
+			}
+		}
+		.is-ordered-last-#{$breakpoint}-only {
+			order: 99;
+		}
+		.is-column-#{$breakpoint}-only {
+			flex-flow: column nowrap;
+		}
+	}
+}
